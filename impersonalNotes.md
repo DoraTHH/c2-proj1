@@ -13,3 +13,6 @@
 - Skapade ett github repo
 
 - Skrev user stories i en kanbantavla i github
+    - Spenderade mycket tid på detta
+
+- Disskuterade implementation av kortlekssystem
