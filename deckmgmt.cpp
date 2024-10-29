@@ -1,16 +1,36 @@
 #include <iostream>
 #include <string.h>
 #include <bits/stdc++.h>
+#include <vector>
 
 void generateIndecies(int input[], int size, int number);
+void drawCard (int deck[], std::vector<int>* hand, int index);
 
 int main () {
-   int deckIndecies[52]; //this is the main array that will be used to point to cards in mainDeck
-   generateIndecies(deckIndecies, 52, 1); //initializes and shuffles the array
+    int mainDeck[52]; //this is the main array that will be used to point to cards in mainDeck
+    generateIndecies(mainDeck, 52, 1); //initializes and shuffles the array
+    int topOfDeck = 0; //used to keep track of which cards have been drawn
 
-   for (int i = 0; i < 52; i++) { //debug feature, will be deleted
-    std::cout << deckIndecies[i] << "\n";
-   }
+    std::vector<int> playerHand;
+    std::vector<int> houseHand;
+
+    //example usage of drawCard, this has the player drawing a card from the deck
+    drawCard (mainDeck, &playerHand, topOfDeck);
+    topOfDeck++;
+
+
+    std::cout << playerHand.at(0);
+
+    for (int i = 0; i < 52; i++) { //debug feature, will be deleted
+        std::cout << mainDeck[i] << "\n";
+    }
+}
+
+
+void drawCard (int deck[], std::vector<int>* hand, int index) {
+    //move int at deck[index] to hand
+    hand->push_back(deck[index]);
+
 }
 
 void generateIndecies(int input[], int size, int number) { //function that puts values in an array then shuffles said array
@@ -18,7 +38,7 @@ void generateIndecies(int input[], int size, int number) { //function that puts 
     for (int i = 0; i < size; i++) {
         input[i] = i + (size * number);
     };
-    std::random_shuffle(input, input+size);
+    std::random_shuffle(input, input+size); //gonna have to figure out how to make this proper random somehow
 }; //somehow it just worked the first time i compiled it
 
 
