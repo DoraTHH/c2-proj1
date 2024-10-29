@@ -33,6 +33,7 @@ void generateIndecies(int input[], int size, int number);
 void drawCard (int deck[], std::vector<int>* hand, int index);
 void showHand (std::vector<int> hand, deck refDeck);
 void showCard (card input);
+void rules ();
 
 int main () {
     int mainDeck[52]; //this is the main array that will be used to point to cards in mainDeck
