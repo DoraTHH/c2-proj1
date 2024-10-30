@@ -20,4 +20,4 @@ void rules() {
     std::cout << "5. Dealer Rules:\n";
     std::cout << "   - Dealer hits until reaching at least 17.\n";
     std::cout << "   - Dealer stands on 17 or higher.\n";
-} 
+}
