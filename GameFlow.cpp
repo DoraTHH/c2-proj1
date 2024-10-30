@@ -2,12 +2,7 @@
 #include <string.h>
 #include <bits/stdc++.h>
 #include <vector>
-#include <deckmgmt.h>
-#include <PrintCards.h>
 
-
-int main () {
-    
 
    //////////////////////////////////////////////////////////////////////////////////////////////////////////////// this is what gameflow would look like.
    char wantCard;
@@ -38,4 +33,3 @@ int main () {
    //begin bank logic
    //evaluation of winner
 
-}
