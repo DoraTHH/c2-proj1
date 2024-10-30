@@ -1,3 +1,6 @@
+#ifndef DISPLAYCARD_H
+#define DISPLAYCARD_H
+
 #include <iostream>
 #include <string>
 #include <vector>
@@ -5,6 +8,8 @@
 
 
 void PrintCards(deck* Deck, std::vector<int> *hand, bool bIsHouseHand);
+
+//string array of ASCII code for the suits
 std::string suits[4] = {
     "\u2665", // HEART
     "\u2660", // SPADE
@@ -12,6 +17,7 @@ std::string suits[4] = {
     "\u2663", // CLUB
 };
 
+//Gets a value(card value) and returns the appropriate string
 std::string GetValueAsString(int value)
 {
     switch (value)
@@ -43,12 +49,13 @@ std::string GetValueAsString(int value)
     case 13:
         return "K";
     default:
-        return "X";
+        return "X"; //X as debug if we somehow get a invalid card value like 14,15...
     }
 }
 
-// Prints cards using ASCII symbols.
-void PrintCards(deck* Deck, std::vector<int> *hand, bool bIsHouseHand) // Watch out for naming conflicts
+// Prints cards using ASCII symbols. Loops through the hand and prints "ASCII Cards" by getting the right values/suits from the deck.
+//Takes a bool bIsHouseHand to know if we want to hide the second card of the dealers/house hand
+void PrintCards(deck* Deck, std::vector<int> *hand, bool bIsHouseHand) 
 {
     if (!bIsHouseHand)
         std::cout << "Player hand: " << "\n";
@@ -110,3 +117,4 @@ void PrintCards(deck* Deck, std::vector<int> *hand, bool bIsHouseHand) // Watch 
     }
     std::cout << "\n";
 }
+#endif
