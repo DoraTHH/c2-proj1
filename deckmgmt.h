@@ -1,6 +1,6 @@
 #include <iostream>
 #include <string.h>
-#include <bits/stdc++.h>
+//#include <bits/stdc++.h>
 #include <vector>
 
 // void generateIndecies(int input[], int size, int number);
@@ -49,7 +49,7 @@ void generateIndecies(int input[], int size, int number) { //function that puts 
     for (int i = 0; i < size; i++) {
         input[i] = i + (size * number);
     };
-    std::random_shuffle(input, input+size); 
+    //std::random_shuffle(input, input+size); 
 }; //somehow it just worked the first time i compiled it
 
 
