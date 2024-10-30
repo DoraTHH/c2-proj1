@@ -3,6 +3,12 @@
 #include <bits/stdc++.h>
 #include <vector>
 
+// void generateIndecies(int input[], int size, int number);
+// void drawCard (int deck[], std::vector<int>* hand, int index);
+// void showHand (std::vector<int> hand, deck refDeck);
+// void showCard (card input);
+// void rules ();
+
 class card
 {
 public:
@@ -29,45 +35,8 @@ class deck {
         }
 };
 
-void generateIndecies(int input[], int size, int number);
-void drawCard (int deck[], std::vector<int>* hand, int index);
-void showHand (std::vector<int> hand, deck refDeck);
-void showCard (card input);
-void rules ();
-
-int main () {
-    int mainDeck[52]; //this is the main array that will be used to point to cards in mainDeck
-    generateIndecies(mainDeck, 52, 1); //initializes and shuffles the array
-    int topOfDeck = 0; //used to keep track of which cards have been drawn
-    deck refDeck; //never used yet completely necessary
 
 
-    std::vector<int> playerHand;
-    std::vector<int> houseHand;
-
-    //example usage of drawCard, this has the player drawing a card from the deck
-    drawCard (mainDeck, &playerHand, topOfDeck);
-    topOfDeck++;
-    drawCard (mainDeck, &playerHand, topOfDeck);
-    topOfDeck++;
-
-    //shows the player's hand
-    showHand (playerHand, refDeck);
-
-    /*for (int i = 0; i < 52; i++) { //debug feature, will be deleted
-        std::cout << mainDeck[i] << "\n";
-    }*/
-}
-
-void showHand (std::vector<int> hand, deck refDeck) {
-    std::cout << "Your hand: ";
-    for (int i = 0; i < hand.size(); i++) {
-        showCard (refDeck.cards[hand[i]]);
-        if (i < hand.size() - 1) { 
-            std::cout << ", ";
-        };
-    }
-};
 
 
 void drawCard (int deck[], std::vector<int>* hand, int index) {
@@ -83,13 +52,6 @@ void generateIndecies(int input[], int size, int number) { //function that puts 
     };
     std::random_shuffle(input, input+size); //gonna have to figure out how to make this proper random somehow
 }; //somehow it just worked the first time i compiled it
-
-
-
-
-
-
-
 
 
 void showCard (card input) {
@@ -156,6 +118,16 @@ void showCard (card input) {
     default:
         break;
     };
+};
+
+void showHand (std::vector<int> hand, deck refDeck) {
+    std::cout << "Your hand: ";
+    for (int i = 0; i < hand.size(); i++) {
+        showCard (refDeck.cards[hand[i]]);
+        if (i < hand.size() - 1) { 
+            std::cout << ", ";
+        };
+    }
 };
 
 void rules() {
