@@ -5,8 +5,13 @@
 #include <algorithm>
 #include "DisplayCards.h"
 #include "deckmgmt.h"
+#include <cstdlib>     /*For rand() and srand()*/ 
+#include <ctime>     /*For time*/
 
 using namespace std;
+
+int drawSubDeck(int array[]); // Pekar på ett random index i en array
+
 
 int main()
 {
@@ -14,11 +19,12 @@ int main()
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////// this is what gameflow would look like.
     rules();
 
-    deck deck1;
-    int printDeck[52];
-    vector<int> playerHand;
-    vector<int> bankHand;
-    int topOfDeck = 0;
+   deck deck1;
+   int printDeck[52];
+   int subDeck[10] = {-1, -2, -3, -4, -5, -6, -7, -8, -9, -10};
+   vector<int> playerHand;
+   vector<int> bankHand;
+   int topOfDeck = 0;
 
     char wantCard;
     generateIndecies(printDeck, 52, 1);
@@ -36,22 +42,27 @@ int main()
     topOfDeck++;
     do
     {
-        drawCard(printDeck, &playerHand, topOfDeck);
+        int subCard=drawSubDeck(subDeck);
+    cout << subCard << endl;
+    drawCard(printDeck, &playerHand, topOfDeck);
         topOfDeck++;
         PrintCards(&deck1, &playerHand, false);
-        int handvalue = handValue(playerHand, 0, deck1);
+        int handvalue = handValue(playerHand, 0, deck1) + subCard;
+   cout << handvalue << endl;
+
+
         if (handvalue < 21)
         {
-            std::cout << "Do you want to draw another card? (Y/N)" << endl;
-            std::cin >> wantCard;
+            cout << "Do you want to draw another card? (Y/N)" << endl;
+            cin >> wantCard;
         }
         else if (handvalue == 21)
         {
-            std::cout << "You have 21, awating banks turn" << endl;
+            cout << "You have 21, awating banks turn" << endl;
         }
         else
         {
-            std::cout << "The Bank wins!" << endl;
+            cout << "The Bank wins!" << endl;
             wantCard = 'n';
         }
 
@@ -61,4 +72,14 @@ int main()
     // evaluation of winner
 
     return 0;
+}
+int drawSubDeck(int array[])
+{
+  srand(time(0));
+
+  int randomIndex = rand() % -10;
+
+  int randomValue = array[randomIndex];
+
+  return randomValue;  
 }
