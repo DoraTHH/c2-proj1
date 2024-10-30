@@ -120,9 +120,8 @@ void showCard (card input) {
     };
 };
 
-void showHand (std::vector<int> hand, deck refDeck) {
-    std::cout << "Your hand: ";
-    for (int i = 0; i < hand.size(); i++) {
+void showHand (std::vector<int> hand, int startIndex, deck refDeck) {
+    for (int i = startIndex; i < hand.size(); i++) {
         showCard (refDeck.cards[hand[i]]);
         if (i < hand.size() - 1) { 
             std::cout << ", ";
