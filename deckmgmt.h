@@ -38,7 +38,6 @@ class deck {
 
 
 
-
 void drawCard (int deck[], std::vector<int>* hand, int index) {
     //move int at deck[index] to hand
     hand->push_back(deck[index]);
@@ -50,7 +49,7 @@ void generateIndecies(int input[], int size, int number) { //function that puts 
     for (int i = 0; i < size; i++) {
         input[i] = i + (size * number);
     };
-    std::random_shuffle(input, input+size); //gonna have to figure out how to make this proper random somehow
+    std::random_shuffle(input, input+size); 
 }; //somehow it just worked the first time i compiled it
 
 
@@ -120,15 +119,86 @@ void showCard (card input) {
     };
 };
 
-void showHand (std::vector<int> hand, deck refDeck) {
-    std::cout << "Your hand: ";
-    for (int i = 0; i < hand.size(); i++) {
+void showHand (std::vector<int> hand, int startIndex, deck refDeck) {
+    for (int i = startIndex; i < hand.size(); i++) {
         showCard (refDeck.cards[hand[i]]);
         if (i < hand.size() - 1) { 
             std::cout << ", ";
         };
     }
 };
+
+int handValue (std::vector<int> hand, int startIndex, deck refDeck) {
+    // oh god this is gonna be complicated
+    // 2-10 are worth their normal value
+    // 11-13 get truncated down to 10
+    // 1 checks if 11 is fat, if it is, then value of 1 is 1, otherwise value of 1 is 11
+    int returnValue = 0;
+    int aces = 0; // amount of aces in your hand
+    for (int i = startIndex; i < hand.size(); i++) {
+        int cardValue = refDeck.cards[hand[i]].value;
+        if (cardValue > 10) {
+            returnValue += 10;
+        } else if (cardValue == 1) {
+            // assume that aces are worth 11
+            aces++;
+            returnValue += 11;
+        } else {
+            returnValue += cardValue;
+        };
+    
+    // if you get fat, make an ace worth 1 instead
+    if (returnValue > 21) {
+        for (int i = 0; i < aces; i++) {
+            returnValue -= 10;
+        };
+    }
+    }
+    return returnValue;
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 void rules() {
     std::cout << "Blackjack Rules:\n";
