@@ -5,13 +5,12 @@
 #include <algorithm>
 #include "DisplayCards.h"
 #include "deckmgmt.h"
-#include <cstdlib>     /*For rand() and srand()*/ 
-#include <ctime>     /*For time*/
+#include <cstdlib> /*For rand() and srand()*/
+#include <ctime>   /*For time*/
 
 using namespace std;
 
 int drawSubDeck(int array[]); // Pekar på ett random index i en array
-
 
 int main()
 {
@@ -19,17 +18,17 @@ int main()
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////// this is what gameflow would look like.
     rules();
 
-   deck deck1;
-   int printDeck[52];
-   int subDeck[10] = {-1, -2, -3, -4, -5, -6, -7, -8, -9, -10};
-   vector<int> playerHand;
-   vector<int> bankHand;
-   int topOfDeck = 0;
+    deck deck1;
+    int printDeck[52];
+    int subDeck[10] = {-1, -2, -3, -4, -5, -6, -7, -8, -9, -10};
+    vector<int> playerHand;
+    vector<int> bankHand;
+    int topOfDeck = 0;
 
     char wantCard;
     generateIndecies(printDeck, 52, 1);
 
-    //Following two lines shuffles the printDeck. Creates a seed based on time and then shuffles the array.
+    // Following two lines shuffles the printDeck. Creates a seed based on time and then shuffles the array.
     unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
     shuffle(printDeck, printDeck + 52, std::default_random_engine(seed));
 
@@ -42,14 +41,13 @@ int main()
     topOfDeck++;
     do
     {
-        int subCard=drawSubDeck(subDeck);
-    cout << subCard << endl;
-    drawCard(printDeck, &playerHand, topOfDeck);
+        int subCard = drawSubDeck(subDeck);
+        cout << subCard << endl;
+        drawCard(printDeck, &playerHand, topOfDeck);
         topOfDeck++;
         PrintCards(&deck1, &playerHand, false);
         int handvalue = handValue(playerHand, 0, deck1) + subCard;
-   cout << handvalue << endl;
-
+        cout << handvalue << endl;
 
         if (handvalue < 21)
         {
@@ -75,11 +73,11 @@ int main()
 }
 int drawSubDeck(int array[])
 {
-  srand(time(0));
+    srand(time(0));
 
-  int randomIndex = rand() % -10;
+    int randomIndex = rand() % -10;
 
-  int randomValue = array[randomIndex];
+    int randomValue = array[randomIndex];
 
-  return randomValue;  
+    return randomValue;
 }
