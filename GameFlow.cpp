@@ -1,25 +1,35 @@
 #include <iostream>
 #include <string.h>
 #include <vector>
-#include <C:\Chas\SUVx24\Kurs2\Blackjack++\deckmgmt.h>
-#include <PrintCards.h>
+//#include <C:\Chas\SUVx24\Kurs2\Blackjack++\deckmgmt.h>
+#include "PrintCards.h"
+#include "deckmgmt.h"
+using namespace std;
 
 
-int main () {
-    
+main ()
+{
+
 
    //////////////////////////////////////////////////////////////////////////////////////////////////////////////// this is what gameflow would look like.
    rules();
 
    deck deck1;
+   int printDeck[52];
+   vector<int> playerHand;
+   vector<int> bankHand;
+   int topOfDeck = 0;
 
    char wantCard;
-   int handvalue;
-   drawCard(int deck1);
+   generateIndecies (printDeck, 52, 1);
+   drawCard(printDeck,&playerHand, topOfDeck);
+   topOfDeck++;
    do
    {
-    drawCard();
-    showHand();
+    drawCard(printDeck,&playerHand, topOfDeck);
+   topOfDeck++;
+    showHand(playerHand, 0, deck1);
+   int handvalue = handValue (playerHand, 0, deck1);
     if (handvalue < 21)
     {
         std::cout << "Do you want to draw another card? (Y/N)" << endl;
