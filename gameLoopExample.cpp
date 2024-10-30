@@ -4,6 +4,7 @@
 using namespace std;
 
 int main () {
+    srand(time(NULL));
     deck refDeck;
     vector<int> playerHand;
     vector<int> houseHand;
@@ -23,7 +24,9 @@ int main () {
 
     cout << "\nYour hand: ";
     showHand (playerHand, 0, refDeck);
+    cout << "\nValue: " << handValue (playerHand, 0, refDeck);
 
     cout << "\nDealer's hand: Hidden card, ";
     showHand (houseHand, 1, refDeck);
+    cout << "\nValue: " << handValue (houseHand, 1, refDeck);
 }
