@@ -1,8 +1,7 @@
 #include <iostream>
 #include <string.h>
-#include <bits/stdc++.h>
 #include <vector>
-#include <deckmgmt.h>
+#include <C:\Chas\SUVx24\Kurs2\Blackjack++\deckmgmt.h>
 #include <PrintCards.h>
 
 
@@ -10,12 +9,16 @@ int main () {
     
 
    //////////////////////////////////////////////////////////////////////////////////////////////////////////////// this is what gameflow would look like.
+   rules();
+
+   deck deck1;
+
    char wantCard;
    int handvalue;
-   drawCard();
+   drawCard(int deck1);
    do
    {
-    drawcard();
+    drawCard();
     showHand();
     if (handvalue < 21)
     {
