@@ -73,7 +73,7 @@ int main() {
 
     db.addPlayer(name); // Add the player to the database
 
-    // Simulate balance changes
+    // Simulate balance changes (this part of the code needs fixing)
     Player* player = db.findPlayer(name);
     if (player) {
         player->addBalance(10); // Add some balance
