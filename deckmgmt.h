@@ -149,7 +149,7 @@ int handValue (std::vector<int> hand, int startIndex, deck refDeck) {
     
     // if you get fat, make an ace worth 1 instead
     if (returnValue > 21) {
-        for (int i = 0; i < aces; i++) {
+        for (int i = 0; i < aces; aces--) {
             returnValue -= 10;
         };
     }
