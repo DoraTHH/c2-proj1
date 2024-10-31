@@ -57,11 +57,7 @@ std::string GetValueAsString(int value)
 //Takes a bool bIsHouseHand to know if we want to hide the second card of the dealers/house hand
 void PrintCards(deck* Deck, std::vector<int> *hand, bool bIsHouseHand) 
 {
-    if (!bIsHouseHand)
-        std::cout << "Player hand: " << "\n";
-    else
-        std::cout << "House hand: " << "\n";
-
+    
     for (int i = 0; i < hand->size(); i++)
     {
         std::cout << "┌───────┐  ";

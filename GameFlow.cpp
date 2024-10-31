@@ -37,14 +37,22 @@ int main()
     //     std::cout << printDeck[i] << "\n";
     // }
 
+    // dealer draws cards
+    drawCard(printDeck, &bankHand, topOfDeck);
+    topOfDeck++;
+    drawCard(printDeck, &bankHand, topOfDeck);
+    topOfDeck++;
+    cout << "\nDealer's hand: " << endl;
+    PrintCards(&deck1, &bankHand, true);
+
     drawCard(printDeck, &playerHand, topOfDeck);
     topOfDeck++;
+    int subCard = 0;
     do
     {
-        int subCard = drawSubDeck(subDeck);
-        cout << subCard << endl;
         drawCard(printDeck, &playerHand, topOfDeck);
         topOfDeck++;
+        cout << "\nYour hand: " << endl;
         PrintCards(&deck1, &playerHand, false);
         int handvalue = handValue(playerHand, 0, deck1) + subCard;
         cout << handvalue << endl;
@@ -57,17 +65,55 @@ int main()
         else if (handvalue == 21)
         {
             cout << "You have 21, awating banks turn" << endl;
+            break;
         }
         else
         {
-            cout << "The Bank wins!" << endl;
-            wantCard = 'n';
+            cout << "You go bust! Do you want a sub card? (Y/N)" << endl;
+            cin >> wantCard;
+            if (wantCard == 'y')
+            {
+                subCard = drawSubDeck(subDeck);
+                cout << "Value of your sub card: " << subCard << endl;
+                handvalue = handValue(playerHand, 0, deck1);
+                handvalue += subCard;
+                cout << "\nValue of your hand: " << handValue << endl;
+                break;
+            }
+            else
+            {
+                break;
+            }
         }
 
     } while (wantCard == 'y');
 
     // begin bank logic
+    int hit = 1;
+    cout << "\nDealer reveals their hidden card: \n";
+    int dealerValue = 0;
+    while (hit == 1)
+    {
+        dealerValue = handValue(bankHand, 0, deck1);
+        PrintCards(&deck1, &bankHand, false);
+        cout << "\nValue: " << dealerValue;
+
+        (dealerValue < 17) ? hit = 1 : hit = 0;
+        if (hit == 1)
+        {
+            cout << "\nDealer draws a new card: \n";
+            drawCard(printDeck, &bankHand, topOfDeck);
+            topOfDeck++;
+        }
+        else
+        {
+            break;
+        };
+    };
     // evaluation of winner
+    int playerValue = handValue(playerHand, 0, deck1) + subCard;
+    dealerValue = handValue(playerHand, 0, deck1);
+    (playerValue > dealerValue && playerValue <= 21 || dealerValue > 21) ? cout << "\nYou win!!" : cout << "\nHouse wins *womp womp*";
 
     return 0;
 }

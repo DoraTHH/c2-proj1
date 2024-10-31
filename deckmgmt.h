@@ -10,6 +10,7 @@
 // void showHand (std::vector<int> hand, deck refDeck);
 // void showCard (card input);
 // void rules ();
+// int handValue(std::vector<int> hand, int startIndex, deck refDeck)
 
 class card
 {
