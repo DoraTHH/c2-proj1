@@ -7,7 +7,7 @@
 #include "deckmgmt.h"
 
 
-void PrintCards(deck* Deck, std::vector<int> *hand, bool bIsHouseHand);
+void PrintCards(deck* Deck, std::vector<int> *hand, bool bHideHiddenCard);
 
 //string array of ASCII code for the suits
 std::string suits[4] = {
@@ -54,8 +54,8 @@ std::string GetValueAsString(int value)
 }
 
 // Prints cards using ASCII symbols. Loops through the hand and prints "ASCII Cards" by getting the right values/suits from the deck.
-//Takes a bool bIsHouseHand to know if we want to hide the second card of the dealers/house hand
-void PrintCards(deck* Deck, std::vector<int> *hand, bool bIsHouseHand) 
+//Takes a bool bHideHiddenCard to know if we want to hide the second card of the dealers/house hand
+void PrintCards(deck* Deck, std::vector<int> *hand, bool bHideHiddenCard) 
 {
     
     for (int i = 0; i < hand->size(); i++)
@@ -65,7 +65,7 @@ void PrintCards(deck* Deck, std::vector<int> *hand, bool bIsHouseHand)
     std::cout << "\n";
     for (int i = 0; i < hand->size(); i++)
     {
-        if (bIsHouseHand && i == 1)
+        if (bHideHiddenCard && i == 1)
         {
             std::cout << "│ " << "?" << "     │  ";
         }
@@ -81,7 +81,7 @@ void PrintCards(deck* Deck, std::vector<int> *hand, bool bIsHouseHand)
     std::cout << "\n";
     for (int i = 0; i < hand->size(); i++)
     {
-        if (bIsHouseHand && i == 1)
+        if (bHideHiddenCard && i == 1)
         {
             std::cout << "│   " << "?" << "   │  ";
         }
@@ -93,7 +93,7 @@ void PrintCards(deck* Deck, std::vector<int> *hand, bool bIsHouseHand)
     std::cout << "\n";
     for (int i = 0; i < hand->size(); i++)
     {
-        if (bIsHouseHand && i == 1)
+        if (bHideHiddenCard && i == 1)
         {
             std::cout << "│     " << "?" << " │  ";
         }

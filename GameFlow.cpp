@@ -55,7 +55,7 @@ int main()
         cout << "\nYour hand: " << endl;
         PrintCards(&deck1, &playerHand, false);
         int handvalue = handValue(playerHand, 0, deck1) + subCard;
-        cout << handvalue << endl;
+        cout << "Value of your hand: "<< handvalue << endl;
 
         if (handvalue < 21)
         {
@@ -77,7 +77,7 @@ int main()
                 cout << "Value of your sub card: " << subCard << endl;
                 handvalue = handValue(playerHand, 0, deck1);
                 handvalue += subCard;
-                cout << "\nValue of your hand: " << handValue << endl;
+                cout << "\nValue of your hand: " << handvalue << endl;
                 break;
             }
             else
@@ -96,7 +96,7 @@ int main()
     {
         dealerValue = handValue(bankHand, 0, deck1);
         PrintCards(&deck1, &bankHand, false);
-        cout << "\nValue: " << dealerValue;
+        cout << "\nValue of the dealer's hand: " << dealerValue;
 
         (dealerValue < 17) ? hit = 1 : hit = 0;
         if (hit == 1)
@@ -112,7 +112,7 @@ int main()
     };
     // evaluation of winner
     int playerValue = handValue(playerHand, 0, deck1) + subCard;
-    dealerValue = handValue(playerHand, 0, deck1);
+    dealerValue = handValue(bankHand, 0, deck1);
     (playerValue > dealerValue && playerValue <= 21 || dealerValue > 21) ? cout << "\nYou win!!" : cout << "\nHouse wins *womp womp*";
 
     return 0;
